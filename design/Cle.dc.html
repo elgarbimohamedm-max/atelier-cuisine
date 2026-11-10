@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Logo La Clé à Cuisine</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#24483E}a:hover{color:#132A24}
+</style>
+</helmet>
+<div style="width: 600px; height: 600px; box-sizing: border-box; padding: 56px; background: #E8F0EC; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 26px; font-family: 'Poppins', 'Helvetica Neue', Arial, sans-serif; color: #24483E">
+<svg width="170" height="110" viewBox="0 0 150 96" fill="none" role="img" aria-label="Clé stylisée">
+<circle cx="34" cy="48" r="24" stroke="#24483E" stroke-width="7"></circle>
+<circle cx="34" cy="48" r="8" fill="{{accent}}"></circle>
+<line x1="58" y1="48" x2="140" y2="48" stroke="#24483E" stroke-width="7" stroke-linecap="round"></line>
+<line x1="116" y1="48" x2="116" y2="68" stroke="#24483E" stroke-width="7" stroke-linecap="round"></line>
+<line x1="134" y1="48" x2="134" y2="62" stroke="#24483E" stroke-width="7" stroke-linecap="round"></line>
+</svg>
+<div style="display: flex; flex-direction: column; align-items: center; gap: 2px">
+<div style="font-size: 28px; font-weight: 500; line-height: 1.1">La Clé à</div>
+<div style="font-size: 64px; font-weight: 700; letter-spacing: -1px; line-height: 1.05">Cuisine</div>
+</div>
+<div style="padding: 8px 18px; border-radius: 999px; background: {{accent}}; color: #FFFFFF; font-size: 15px; font-weight: 500; letter-spacing: 1px">Pose de cuisines &amp; montage de meubles</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"accent":{"editor":"color","default":"#B85A2C","options":["#B85A2C","#2F6B5A","#3D5A8A"]},"$preview":{"width":600,"height":600}}'>
+class Component extends DCLogic {
+renderVals() {
+return { accent: this.props.accent ?? '#B85A2C' };
+}
+}
+</script>
+</body>
+</html>

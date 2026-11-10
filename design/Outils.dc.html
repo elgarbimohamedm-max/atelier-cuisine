@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Logo crayon et tournevis</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;800&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#2B2B2B}a:hover{color:#000000}
+</style>
+</helmet>
+<div style="width: 600px; height: 600px; box-sizing: border-box; padding: 56px; background: #F7F3EC; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 26px; font-family: 'Barlow Condensed', 'Arial Narrow', sans-serif; color: #2B2B2B">
+<svg width="150" height="150" viewBox="0 0 120 120" fill="none" role="img" aria-label="Crayon et tournevis croisés">
+<g transform="rotate(45 60 60)">
+<rect x="52" y="8" width="16" height="82" rx="2" stroke="#2B2B2B" stroke-width="5"></rect>
+<path d="M52 90 L60 110 L68 90 Z" stroke="#2B2B2B" stroke-width="5" stroke-linejoin="round"></path>
+</g>
+<g transform="rotate(-45 60 60)">
+<rect x="50" y="8" width="20" height="40" rx="6" fill="{{accent}}"></rect>
+<line x1="60" y1="48" x2="60" y2="104" stroke="#2B2B2B" stroke-width="6" stroke-linecap="round"></line>
+<line x1="54" y1="108" x2="66" y2="108" stroke="#2B2B2B" stroke-width="5" stroke-linecap="round"></line>
+</g>
+</svg>
+<div style="display: flex; flex-direction: column; align-items: center; gap: 2px">
+<div style="font-size: 30px; font-weight: 500; letter-spacing: 10px; text-transform: uppercase; line-height: 1">L’Atelier</div>
+<div style="font-size: 84px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; line-height: 1">Cuisine</div>
+</div>
+<div style="font-size: 20px; font-weight: 500; letter-spacing: 3px; text-transform: uppercase; color: #5A5148">Conception · Pose · Montage de meubles</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"accent":{"editor":"color","default":"#D9661F","options":["#D9661F","#E3B23C","#3D7A5E"]},"$preview":{"width":600,"height":600}}'>
+class Component extends DCLogic {
+renderVals() {
+return { accent: this.props.accent ?? '#D9661F' };
+}
+}
+</script>
+</body>
+</html>

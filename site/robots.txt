@@ -1,0 +1,6 @@
+User-agent: *
+Disallow: /ancien.html
+Disallow: /envoi-devis.php
+Disallow: /signature-mail.html
+
+Sitemap: https://ateliercuisine11.fr/sitemap.xml

@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Logo version horizontale</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&amp;family=DM+Sans:wght@500&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#3F4F2F}a:hover{color:#26301C}
+</style>
+</helmet>
+<div style="width: 600px; height: 600px; box-sizing: border-box; padding: 48px; background: #EEF0E6; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 24px; color: #3F4F2F">
+<div style="display: flex; align-items: center; gap: 22px">
+<div style="width: 112px; height: 112px; border-radius: 20px; background: {{accent}}; display: flex; align-items: center; justify-content: center; flex-shrink: 0">
+<svg width="70" height="70" viewBox="0 0 70 70" fill="none" aria-hidden="true">
+<line x1="4" y1="18" x2="66" y2="18" stroke="#FFFFFF" stroke-width="5" stroke-linecap="round"></line>
+<rect x="12" y="24" width="46" height="38" rx="3" stroke="#FFFFFF" stroke-width="4"></rect>
+<line x1="35" y1="24" x2="35" y2="62" stroke="#FFFFFF" stroke-width="4"></line>
+<circle cx="30" cy="38" r="2.5" fill="#FFFFFF"></circle>
+<circle cx="40" cy="38" r="2.5" fill="#FFFFFF"></circle>
+</svg>
+</div>
+<div style="display: flex; flex-direction: column; gap: 2px">
+<div style="font-family: 'DM Serif Display', Georgia, serif; font-size: 34px; line-height: 1">L’Atelier</div>
+<div style="font-family: 'DM Serif Display', Georgia, serif; font-size: 58px; line-height: 1">Cuisine</div>
+</div>
+</div>
+<div style="width: 100%; height: 2px; background: #C9CDB8"></div>
+<div style="font-family: 'DM Sans', Arial, sans-serif; font-size: 15px; font-weight: 500; letter-spacing: 2px; text-transform: uppercase; color: #56663F">Conception · Pose · Montage de meubles</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"accent":{"editor":"color","default":"#5B6E3A","options":["#5B6E3A","#9A5B34","#2F4F6F"]},"$preview":{"width":600,"height":600}}'>
+class Component extends DCLogic {
+renderVals() {
+return { accent: this.props.accent ?? '#5B6E3A' };
+}
+}
+</script>
+</body>
+</html>

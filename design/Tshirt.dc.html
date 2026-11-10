@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Maquette t-shirt L’Atelier Cuisine</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#1E4B7A}a:hover{color:#0F2D4D}
+</style>
+</helmet>
+<div style="width: 1280px; height: 720px; box-sizing: border-box; padding: 56px 80px; background: #EEF1F5; display: flex; justify-content: center; align-items: center; gap: 120px; font-family: 'Space Grotesk', Arial, sans-serif; color: #1E2A3A">
+<div style="display: flex; flex-direction: column; align-items: center; gap: 20px">
+<div style="position: relative; width: 400px; height: 440px">
+<svg width="400" height="440" viewBox="0 0 400 440" fill="none" role="img" aria-label="T-shirt vu de face"><path d="M140 22 Q200 62 260 22 L372 70 L340 158 L306 142 L306 424 L94 424 L94 142 L60 158 L28 70 Z" fill="{{shirt}}" stroke="#0B1424" stroke-width="2" stroke-linejoin="round"></path><path d="M140 22 Q200 62 260 22" stroke="#0B1424" stroke-width="6" fill="none"></path></svg>
+<div style="position: absolute; left: 222px; top: 108px; width: 78px; display: flex; flex-direction: column; align-items: center; gap: 5px; color: #FFFFFF">
+<svg width="46" height="41" viewBox="0 0 140 124" fill="none" aria-hidden="true"><path d="M10 10 H130 V40 H40 V114 H10 Z" stroke="#FFFFFF" stroke-width="5" stroke-linejoin="round"></path><line x1="40" y1="10" x2="40" y2="40" stroke="#FFFFFF" stroke-width="2.5"></line><line x1="70" y1="10" x2="70" y2="40" stroke="#FFFFFF" stroke-width="2.5"></line><line x1="100" y1="10" x2="100" y2="40" stroke="#FFFFFF" stroke-width="2.5"></line><line x1="10" y1="70" x2="40" y2="70" stroke="#FFFFFF" stroke-width="2.5"></line><circle cx="55" cy="25" r="5" stroke="{{accent}}" stroke-width="3.5"></circle><circle cx="85" cy="25" r="5" stroke="{{accent}}" stroke-width="3.5"></circle><rect x="66" y="66" width="56" height="30" rx="2" stroke="{{accent}}" stroke-width="5"></rect></svg>
+<div style="font-size: 7px; letter-spacing: 2px; text-transform: uppercase; line-height: 1">L’Atelier</div>
+<div style="font-size: 15px; font-weight: 700; line-height: 1">CUISINE</div>
+</div>
+</div>
+<div style="font-size: 18px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase">Devant</div>
+</div>
+<div style="display: flex; flex-direction: column; align-items: center; gap: 20px">
+<div style="position: relative; width: 400px; height: 440px">
+<svg width="400" height="440" viewBox="0 0 400 440" fill="none" role="img" aria-label="T-shirt vu de dos"><path d="M140 22 Q200 62 260 22 L372 70 L340 158 L306 142 L306 424 L94 424 L94 142 L60 158 L28 70 Z" fill="{{shirt}}" stroke="#0B1424" stroke-width="2" stroke-linejoin="round"></path><path d="M140 22 Q200 62 260 22" stroke="#0B1424" stroke-width="6" fill="none"></path></svg>
+<div style="position: absolute; left: 94px; top: 104px; width: 212px; display: flex; flex-direction: column; align-items: center; gap: 10px; color: #FFFFFF">
+<svg width="120" height="106" viewBox="0 0 140 124" fill="none" aria-hidden="true"><path d="M10 10 H130 V40 H40 V114 H10 Z" stroke="#FFFFFF" stroke-width="5" stroke-linejoin="round"></path><line x1="40" y1="10" x2="40" y2="40" stroke="#FFFFFF" stroke-width="2.5"></line><line x1="70" y1="10" x2="70" y2="40" stroke="#FFFFFF" stroke-width="2.5"></line><line x1="100" y1="10" x2="100" y2="40" stroke="#FFFFFF" stroke-width="2.5"></line><line x1="10" y1="70" x2="40" y2="70" stroke="#FFFFFF" stroke-width="2.5"></line><circle cx="55" cy="25" r="5" stroke="{{accent}}" stroke-width="3.5"></circle><circle cx="85" cy="25" r="5" stroke="{{accent}}" stroke-width="3.5"></circle><rect x="66" y="66" width="56" height="30" rx="2" stroke="{{accent}}" stroke-width="5"></rect></svg>
+<div style="font-size: 13px; letter-spacing: 6px; text-transform: uppercase; line-height: 1">L’Atelier</div>
+<div style="font-size: 40px; font-weight: 700; letter-spacing: -1px; line-height: 1">CUISINE</div>
+<div style="font-size: 9px; letter-spacing: 1px; text-align: center; color: #D6DEE8; line-height: 1.4">Conception · Pose<br>Montage de meubles</div>
+</div>
+</div>
+<div style="font-size: 18px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase">Dos</div>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"shirt":{"editor":"color","default":"#1E3A5F","options":["#1E3A5F","#2E3338","#1A1A1A"]},"accent":{"editor":"color","default":"#E07A3E","options":["#E07A3E","#F2A65A","#FFFFFF"]},"$preview":{"width":1280,"height":720}}'>
+class Component extends DCLogic {
+renderVals() {
+return { shirt: this.props.shirt ?? '#1E3A5F', accent: this.props.accent ?? '#E07A3E' };
+}
+}
+</script>
+</body>
+</html>

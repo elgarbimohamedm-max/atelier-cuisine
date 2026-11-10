@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Logo Cuisine &amp; Montage</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;800&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#1F2A44}a:hover{color:#0F1626}
+</style>
+</helmet>
+<div style="width: 600px; height: 600px; box-sizing: border-box; padding: 56px; background: #FFFFFF; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 28px; font-family: 'Montserrat', 'Helvetica Neue', Arial, sans-serif; color: #1F2A44">
+<svg width="150" height="150" viewBox="0 0 120 120" fill="none" role="img" aria-label="Meuble de cuisine stylisé">
+<line x1="10" y1="34" x2="110" y2="34" stroke="{{accent}}" stroke-width="7" stroke-linecap="round"></line>
+<rect x="22" y="42" width="76" height="62" rx="5" stroke="#1F2A44" stroke-width="6"></rect>
+<line x1="60" y1="42" x2="60" y2="104" stroke="#1F2A44" stroke-width="6"></line>
+<circle cx="52" cy="66" r="3.5" fill="#1F2A44"></circle>
+<circle cx="68" cy="66" r="3.5" fill="#1F2A44"></circle>
+<rect x="44" y="12" width="32" height="14" rx="3" stroke="#1F2A44" stroke-width="5"></rect>
+</svg>
+<div style="display: flex; flex-direction: column; align-items: center; gap: 8px">
+<div style="font-size: 52px; font-weight: 800; letter-spacing: -1px; line-height: 1">CUISINE</div>
+<div style="font-size: 28px; font-weight: 500; letter-spacing: 6px; line-height: 1">&amp; MONTAGE</div>
+</div>
+<div style="width: 64px; height: 4px; background: {{accent}}; border-radius: 2px"></div>
+<div style="font-size: 16px; font-weight: 500; letter-spacing: 2px; color: #4A5470">Pose de cuisines · Montage de meubles</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"accent":{"editor":"color","default":"#D9661F","options":["#D9661F","#2E7D6B","#B8860B"]},"$preview":{"width":600,"height":600}}'>
+class Component extends DCLogic {
+renderVals() {
+return { accent: this.props.accent ?? '#D9661F' };
+}
+}
+</script>
+</body>
+</html>

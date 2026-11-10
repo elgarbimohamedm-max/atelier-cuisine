@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Logo plan d’architecte</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#1E4B7A}a:hover{color:#0F2D4D}
+</style>
+</helmet>
+<div style="width: 600px; height: 600px; box-sizing: border-box; padding: 56px; background: #FFFFFF; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 28px; font-family: 'Space Grotesk', Arial, sans-serif; color: #1E4B7A">
+<svg width="170" height="150" viewBox="0 0 140 124" fill="none" role="img" aria-label="Plan de cuisine vu du dessus">
+<path d="M10 10 H130 V40 H40 V114 H10 Z" stroke="#1E4B7A" stroke-width="4" stroke-linejoin="round"></path>
+<line x1="40" y1="10" x2="40" y2="40" stroke="#1E4B7A" stroke-width="2"></line>
+<line x1="70" y1="10" x2="70" y2="40" stroke="#1E4B7A" stroke-width="2"></line>
+<line x1="100" y1="10" x2="100" y2="40" stroke="#1E4B7A" stroke-width="2"></line>
+<line x1="10" y1="70" x2="40" y2="70" stroke="#1E4B7A" stroke-width="2"></line>
+<circle cx="55" cy="25" r="5" stroke="{{accent}}" stroke-width="3"></circle>
+<circle cx="85" cy="25" r="5" stroke="{{accent}}" stroke-width="3"></circle>
+<rect x="66" y="66" width="56" height="30" rx="2" stroke="{{accent}}" stroke-width="4"></rect>
+<line x1="10" y1="120" x2="130" y2="120" stroke="#1E4B7A" stroke-width="1.5" stroke-dasharray="4 4"></line>
+</svg>
+<div style="display: flex; flex-direction: column; align-items: center; gap: 6px">
+<div style="font-size: 24px; font-weight: 400; letter-spacing: 8px; text-transform: uppercase; line-height: 1">L’Atelier</div>
+<div style="font-size: 64px; font-weight: 700; letter-spacing: -1px; line-height: 1">CUISINE</div>
+</div>
+<div style="font-size: 15px; letter-spacing: 2px; color: #3E6690">Conception · Pose · Montage de meubles</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"accent":{"editor":"color","default":"#E07A3E","options":["#E07A3E","#2E9C8A","#1E4B7A"]},"$preview":{"width":600,"height":600}}'>
+class Component extends DCLogic {
+renderVals() {
+return { accent: this.props.accent ?? '#E07A3E' };
+}
+}
+</script>
+</body>
+</html>

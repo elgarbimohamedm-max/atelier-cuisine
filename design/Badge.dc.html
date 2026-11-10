@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Logo badge</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#1F2A44}a:hover{color:#0F1626}
+</style>
+</helmet>
+<div style="width: 600px; height: 600px; box-sizing: border-box; padding: 48px; background: #FFFFFF; display: flex; align-items: center; justify-content: center; font-family: 'Oswald', 'Arial Narrow', sans-serif; color: #1F2A44">
+<div style="width: 440px; height: 440px; border-radius: 999px; border: 6px solid #1F2A44; box-sizing: border-box; display: flex; align-items: center; justify-content: center">
+<div style="width: 400px; height: 400px; border-radius: 999px; border: 2px solid {{accent}}; box-sizing: border-box; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px">
+<svg width="64" height="48" viewBox="0 0 64 48" fill="none" aria-hidden="true">
+<path d="M22 4 H42 V18 L58 34 H6 L22 18 Z" stroke="{{accent}}" stroke-width="4" stroke-linejoin="round"></path>
+<line x1="2" y1="44" x2="62" y2="44" stroke="#1F2A44" stroke-width="4" stroke-linecap="round"></line>
+</svg>
+<div style="font-size: 26px; font-weight: 400; letter-spacing: 10px; text-transform: uppercase; line-height: 1">L’Atelier</div>
+<div style="font-size: 72px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; line-height: 1">Cuisine</div>
+<div style="width: 180px; height: 3px; background: {{accent}}"></div>
+<div style="font-size: 15px; font-weight: 400; letter-spacing: 3px; text-transform: uppercase; text-align: center; line-height: 1.4">Conception · Pose<br>Montage de meubles</div>
+</div>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"accent":{"editor":"color","default":"#C0392B","options":["#C0392B","#D9661F","#2E7D6B"]},"$preview":{"width":600,"height":600}}'>
+class Component extends DCLogic {
+renderVals() {
+return { accent: this.props.accent ?? '#C0392B' };
+}
+}
+</script>
+</body>
+</html>
