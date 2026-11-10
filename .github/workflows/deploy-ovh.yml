@@ -1,0 +1,49 @@
+# Déploie automatiquement le dossier site/ sur l'hébergement OVH (ateliercuisine11.fr)
+# à chaque push sur main qui modifie le site. Peut aussi être lancé à la main
+# depuis l'onglet « Actions » de GitHub (bouton « Run workflow »).
+#
+# Secret à créer dans GitHub : Settings > Secrets and variables > Actions > New repository secret
+#   FTP_PASSWORD : le mot de passe FTP OVH du compte atelivpx
+name: Déploiement OVH
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "site/**"
+      - ".github/workflows/deploy-ovh.yml"
+  workflow_dispatch:
+
+# Un seul déploiement à la fois
+concurrency:
+  group: deploy-ovh
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Récupérer le code
+        uses: actions/checkout@v4
+
+      - name: Envoyer site/ vers OVH (www/)
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ftp.cluster129.hosting.ovh.net
+          username: atelivpx
+          password: ${{ secrets.FTP_PASSWORD }}
+          protocol: ftp
+          local-dir: ./site/
+          server-dir: ./www/
+          # N'envoie que les fichiers modifiés depuis le dernier déploiement
+          # (état mémorisé dans www/.ftp-deploy-sync-state.json sur le serveur).
+          # Les fichiers présents uniquement sur le serveur (ex. .htaccess) ne sont pas supprimés.
+
+      - name: Vérifier que le site répond
+        run: |
+          code=$(curl -s -o /dev/null -w "%{http_code}" https://ateliercuisine11.fr/)
+          echo "https://ateliercuisine11.fr/ → HTTP $code"
+          test "$code" = "200"

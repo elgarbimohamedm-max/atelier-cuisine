@@ -35,6 +35,12 @@ Narbonne et alentours · Devis gratuit sous 48 h.
 
 ### Mettre à jour le site en ligne
 
+**Automatique (recommandé)** : toute modification du dossier `site/` poussée sur la branche `main` est envoyée sur OVH par la GitHub Action `.github/workflows/deploy-ovh.yml` (seuls les fichiers modifiés sont envoyés). On peut aussi la lancer à la main : onglet **Actions** → **Déploiement OVH** → **Run workflow**.
+
+Réglage unique : dans GitHub, **Settings → Secrets and variables → Actions → New repository secret**, nom `FTP_PASSWORD`, valeur = mot de passe FTP OVH.
+
+**À la main (secours)** :
+
 1. Se connecter en FTP : `ftp://atelivpx@ftp.cluster129.hosting.ovh.net/www/` (Explorateur de fichiers Windows, Ctrl + L).
 2. Renommer l’ancien fichier à remplacer (F2), par exemple `index.html` → `ancien.html`.
 3. Copier-coller le nouveau fichier dans `www`.
