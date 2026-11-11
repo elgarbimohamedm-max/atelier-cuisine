@@ -40,10 +40,17 @@ jobs:
           server-dir: ./www/
           # N'envoie que les fichiers modifiés depuis le dernier déploiement
           # (état mémorisé dans www/.ftp-deploy-sync-state.json sur le serveur).
-          # Les fichiers présents uniquement sur le serveur (ex. .htaccess) ne sont pas supprimés.
+          # Les fichiers présents uniquement sur le serveur ne sont pas supprimés.
+          # Le .htaccess (HTTPS + vitesse) fait partie de site/ et est donc envoyé.
 
       - name: Vérifier que le site répond
         run: |
           code=$(curl -s -o /dev/null -w "%{http_code}" https://ateliercuisine11.fr/)
           echo "https://ateliercuisine11.fr/ → HTTP $code"
           test "$code" = "200"
+          # Redirections du .htaccess : http:// et www. doivent finir sur https://ateliercuisine11.fr/
+          for u in http://ateliercuisine11.fr/ http://www.ateliercuisine11.fr/ https://www.ateliercuisine11.fr/; do
+            res=$(curl -s -L --max-redirs 5 -o /dev/null -w "%{http_code} %{url_effective}" "$u" || true)
+            echo "$u → $res"
+            test "$res" = "200 https://ateliercuisine11.fr/" || echo "::warning::$u ne redirige pas correctement ($res)"
+          done
