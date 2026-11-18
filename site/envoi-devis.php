@@ -53,6 +53,46 @@ if ($email !== '' && !filter_var($email, FILTER_VALIDATE_EMAIL)) {
 }
 if ($projet === '') { $projet = 'Demande de devis'; }
 
+// ---------- Photos jointes (facultatives) ----------
+// Jusqu'à 5 images, 8 Mo maximum chacune ; le type réel du fichier est vérifié (pas seulement son nom).
+$photos = array();
+$types_acceptes = array(
+    'image/jpeg' => 'jpg', 'image/png' => 'png', 'image/webp' => 'webp',
+    'image/gif' => 'gif', 'image/heic' => 'heic', 'image/heif' => 'heif',
+);
+if (!empty($_FILES['photos']) && is_array($_FILES['photos']['name'])) {
+    $nb = count($_FILES['photos']['name']);
+    if ($nb > 5) {
+        repondre(false, 'Vous pouvez joindre 5 photos au maximum.', 422);
+    }
+    $finfo = function_exists('finfo_open') ? finfo_open(FILEINFO_MIME_TYPE) : null;
+    for ($i = 0; $i < $nb; $i++) {
+        $erreur = $_FILES['photos']['error'][$i];
+        if ($erreur === UPLOAD_ERR_NO_FILE) { continue; }
+        if ($erreur === UPLOAD_ERR_INI_SIZE || $erreur === UPLOAD_ERR_FORM_SIZE || $_FILES['photos']['size'][$i] > 8 * 1024 * 1024) {
+            repondre(false, 'Une photo est trop lourde (8 Mo maximum). Retirez-la ou choisissez-en une autre.', 422);
+        }
+        if ($erreur !== UPLOAD_ERR_OK || !is_uploaded_file($_FILES['photos']['tmp_name'][$i])) {
+            repondre(false, 'Une photo n’a pas pu être reçue. Réessayez, ou envoyez votre demande sans photo.', 422);
+        }
+        $chemin = $_FILES['photos']['tmp_name'][$i];
+        $type = $finfo ? finfo_file($finfo, $chemin) : '';
+        if ($type === '' || $type === 'application/octet-stream') {
+            $info = @getimagesize($chemin);
+            $type = $info ? $info['mime'] : '';
+        }
+        if (!isset($types_acceptes[$type])) {
+            repondre(false, 'Seules les photos (JPEG, PNG, HEIC…) peuvent être jointes.', 422);
+        }
+        $photos[] = array(
+            'nom'     => 'photo-' . (count($photos) + 1) . '.' . $types_acceptes[$type],
+            'type'    => $type,
+            'contenu' => file_get_contents($chemin),
+        );
+    }
+    if ($finfo) { finfo_close($finfo); }
+}
+
 // Liens pratiques : appel, WhatsApp, réponse par e-mail
 $tel_chiffres = preg_replace('/[^0-9+]/', '', $tel);
 $tel_wa = preg_replace('/[^0-9]/', '', $tel);
@@ -70,6 +110,7 @@ $texte = "NOUVELLE DEMANDE DE DEVIS – ateliercuisine11.fr\n\n"
        . "E-mail : " . ($email !== '' ? $email : '(non renseigné)') . "\n"
        . "Ville : " . ($ville !== '' ? $ville : '(non renseignée)') . "\n\n"
        . "Message :\n" . ($message !== '' ? $message : '(pas de message)') . "\n\n"
+       . (count($photos) ? count($photos) . " photo(s) en pièce jointe.\n\n" : '')
        . "Reçue le $date\n";
 
 // ---------- Version mise en forme (HTML) ----------
@@ -113,6 +154,8 @@ $html = '<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="
 . '<div style="color:#5B6B7C;font-size:14px;margin-bottom:8px">Message du client</div>'
 . '<div style="background:#F4F8FC;border-left:4px solid #1E4B7A;border-radius:6px;padding:14px 16px;color:#1A2533;font-size:15px;line-height:1.5">' . $msg_html . '</div>'
 . '</td></tr>'
+// Photos
+. (count($photos) ? '<tr><td style="padding:14px 26px 0"><div style="background:#FCEBDF;color:#B4561F;font-weight:bold;font-size:14px;padding:10px 14px;border-radius:8px">📷 ' . count($photos) . ' photo' . (count($photos) > 1 ? 's' : '') . ' en pièce jointe</div></td></tr>' : '')
 // Boutons
 . '<tr><td style="padding:20px 22px 8px"><table role="presentation" cellpadding="0" cellspacing="0"><tr>' . $boutons . '</tr></table></td></tr>'
 . '<tr><td style="padding:6px 26px 22px;color:#5B6B7C;font-size:13px">⏱ À rappeler sous 48 h, comme promis sur le site.</td></tr>'
@@ -120,14 +163,13 @@ $html = '<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="
 . '<tr><td style="background:#F4F8FC;padding:14px 26px;color:#8A97A6;font-size:12px">Reçue le ' . h($date) . ' depuis le formulaire de ateliercuisine11.fr</td></tr>'
 . '</table></td></tr></table></body></html>';
 
-// ---------- Assemblage du message (texte + HTML) ----------
+// ---------- Assemblage du message (texte + HTML, et photos en pièces jointes) ----------
 $frontiere = 'ac_' . md5(uniqid('', true));
 $entetes  = "From: Site L'Atelier Cuisine <$expediteur>\r\n";
 if ($email !== '') { $entetes .= "Reply-To: $email\r\n"; }
 $entetes .= "MIME-Version: 1.0\r\n";
-$entetes .= "Content-Type: multipart/alternative; boundary=\"$frontiere\"\r\n";
 
-$corps  = "--$frontiere\r\n"
+$alternative = "--$frontiere\r\n"
         . "Content-Type: text/plain; charset=UTF-8\r\n"
         . "Content-Transfer-Encoding: base64\r\n\r\n"
         . chunk_split(base64_encode($texte)) . "\r\n"
@@ -136,6 +178,25 @@ $corps  = "--$frontiere\r\n"
         . "Content-Transfer-Encoding: base64\r\n\r\n"
         . chunk_split(base64_encode($html)) . "\r\n"
         . "--$frontiere--\r\n";
+
+if (count($photos)) {
+    $frontiere_mixte = 'acm_' . md5(uniqid('', true));
+    $entetes .= "Content-Type: multipart/mixed; boundary=\"$frontiere_mixte\"\r\n";
+    $corps  = "--$frontiere_mixte\r\n"
+            . "Content-Type: multipart/alternative; boundary=\"$frontiere\"\r\n\r\n"
+            . $alternative . "\r\n";
+    foreach ($photos as $p) {
+        $corps .= "--$frontiere_mixte\r\n"
+                . "Content-Type: {$p['type']}; name=\"{$p['nom']}\"\r\n"
+                . "Content-Transfer-Encoding: base64\r\n"
+                . "Content-Disposition: attachment; filename=\"{$p['nom']}\"\r\n\r\n"
+                . chunk_split(base64_encode($p['contenu'])) . "\r\n";
+    }
+    $corps .= "--$frontiere_mixte--\r\n";
+} else {
+    $entetes .= "Content-Type: multipart/alternative; boundary=\"$frontiere\"\r\n";
+    $corps = $alternative;
+}
 
 $sujet_encode = '=?UTF-8?B?' . base64_encode($sujet) . '?=';
 

@@ -60,7 +60,7 @@
 <link rel="preload" href="fonts/space-grotesk.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="fonts/source-sans-3.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="fonts/fonts.css?v=1">
-<link rel="stylesheet" href="style.css?v=5">
+<link rel="stylesheet" href="style.css?v=6">
 <script>document.documentElement.classList.add('js')</script>
 </head>
 <body>
@@ -186,6 +186,10 @@
         </table>
       </div>
       <p class="note">Pour un montage de meubles, envoyez-nous la liste ou une photo de vos meubles : nous vous répondons avec un prix précis.</p>
+      <ul class="infos-prix">
+        <li><strong>Prix nets, sans TVA en plus</strong><span>TVA non applicable (article 293 B du CGI) : le prix du devis est le prix que vous payez.</span></li>
+        <li><strong>Paiement par carte, virement ou espèces</strong><span>Un souci après notre passage ? Appelez-nous, nous revenons le régler.</span></li>
+      </ul>
     </div>
   </section>
 
@@ -193,7 +197,7 @@
     <div class="conteneur">
       <h2>Questions fréquentes</h2>
       <div class="faq">
-        <details><summary>Intervenez-vous vraiment à Béziers ?</summary><p>Oui. Béziers fait partie de notre zone d’intervention, comme Narbonne, Carcassonne et les villages du Narbonnais. Nous sommes basés à Narbonne, à environ 30 minutes.</p></details>
+        <details><summary>Intervenez-vous vraiment à Béziers ?</summary><p>Oui. Béziers fait partie de notre zone d’intervention, comme Narbonne, <a href="pose-cuisine-montage-meubles-carcassonne.html">Carcassonne</a> et les villages du Narbonnais. Nous sommes basés à Narbonne, à environ 30 minutes.</p></details>
         <details><summary>Le devis est-il gratuit pour Béziers aussi ?</summary><p>Oui, le devis est gratuit et sans engagement. Nous vous le faisons parvenir sous 48 h.</p></details>
         <details><summary>Posez-vous les cuisines IKEA à Béziers ?</summary><p>Oui. Nous posons les cuisines IKEA, Leroy Merlin, Brico Dépôt, Castorama et des autres magasins, avec le plan de travail et l’électroménager encastré. Nous pouvons aussi aller la chercher et la livrer chez vous.</p></details>
         <details><summary>Et les communes entre Narbonne et Béziers ?</summary><p>Oui, par exemple Coursan, Cuxac-d’Aude ou Capestang. Votre commune n’est pas citée ? Appelez-nous au 06 66 18 19 15, nous verrons ensemble.</p></details>
@@ -212,7 +216,7 @@
           <li><span>Zone d’intervention</span><strong>Narbonne et alentours</strong></li>
         </ul>
       </div>
-      <form id="devis" action="envoi-devis.php" method="post" novalidate>
+      <form id="devis" action="envoi-devis.php" method="post" enctype="multipart/form-data" novalidate>
         <div class="piege" aria-hidden="true"><label for="site_web">Ne pas remplir</label><input id="site_web" name="site_web" tabindex="-1" autocomplete="off"></div>
         <input type="hidden" name="debut" id="debut" value="">
         <div class="ligne">
@@ -235,6 +239,14 @@
           </select>
         </div>
         <div><label for="message">Message</label><textarea id="message" name="message" placeholder="Par exemple : pose d’une cuisine IKEA, ou montage d’une armoire et d’un lit"></textarea></div>
+        <div class="champ-photos">
+          <label for="photos">Photos (facultatif)</label>
+          <p class="aide" id="photos-aide">Ajoutez jusqu’à 5 photos de votre pièce ou de vos meubles : nous vous donnerons un prix plus précis.</p>
+          <label class="zone-photos" for="photos"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 8h3l2-3h6l2 3h3v11H4z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><circle cx="12" cy="13" r="3.5" stroke="currentColor" stroke-width="2"/></svg><span>Prendre ou choisir des photos</span></label>
+          <input id="photos" name="photos[]" type="file" accept="image/*" multiple aria-describedby="photos-aide photos-compteur">
+          <ul class="apercus" id="apercus" aria-label="Photos ajoutées"></ul>
+          <p class="aide" id="photos-compteur" aria-live="polite"></p>
+        </div>
         <button class="btn btn-orange" type="submit" id="envoyer">Envoyer ma demande de devis</button>
         <p class="message-form" id="retour" role="status"></p>
       </form>
@@ -291,7 +303,7 @@
   </div>
 </footer>
 
-<script src="devis.js?v=2" defer></script>
+<script src="devis.js?v=3" defer></script>
 <script src="menu.js?v=1" defer></script>
 <aside aria-label="Appel rapide"><a class="appel-fixe" href="tel:+33666181915" aria-label="Appeler L’Atelier Cuisine au 06 66 18 19 15"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>Appeler · 06 66 18 19 15</a></aside>
 </body>

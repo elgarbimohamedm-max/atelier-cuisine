@@ -276,3 +276,67 @@ nav a[aria-current="page"]{color:var(--bleu);box-shadow:inset 0 -3px 0 var(--ora
   .avis-grille::-webkit-scrollbar{display:none}
   .avis-carte{flex:0 0 86%;scroll-snap-align:start}
 }
+/* Photos jointes au formulaire de devis */
+.champ-photos .aide{font-size:.95rem;color:var(--texte-doux);margin:-2px 0 10px}
+.champ-photos #photos-compteur{margin:8px 0 0}
+.champ-photos #photos-compteur:empty{display:none}
+.champ-photos input[type=file]{position:absolute;width:1px;height:1px;opacity:0;overflow:hidden}
+.zone-photos{display:flex;align-items:center;justify-content:center;gap:10px;min-height:64px;margin:0;padding:14px;border:2px dashed #9FB2C6;border-radius:8px;background:var(--carte);color:var(--bleu);font-family:'Space Grotesk',sans-serif;font-weight:700;cursor:pointer;text-align:center}
+.zone-photos:hover{border-color:var(--bleu)}
+.champ-photos:has(input[type=file]:focus-visible) .zone-photos{outline:3px solid var(--orange);outline-offset:2px}
+.apercus{list-style:none;margin:12px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:10px}
+.apercus:empty{display:none}
+.apercus li{position:relative;width:72px;height:72px}
+.apercus img{display:block;width:72px;height:72px;object-fit:cover;border-radius:6px;border:1px solid var(--trait)}
+.apercus .retirer{position:absolute;top:-8px;right:-8px;width:28px;height:28px;border-radius:50%;border:2px solid var(--fond-plan);background:var(--bleu-fonce);color:#fff;font-size:18px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;padding:0}
+@media (prefers-color-scheme: dark){.apercus .retirer{background:#E7EDF3;color:#101820}}
+/* Qui sommes-nous */
+.qui{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:56px;align-items:start}
+.qui-texte{margin-top:16px;max-width:60ch}
+.fiche{margin:0;background:var(--fond-plan);border:1px solid var(--trait);border-top:4px solid var(--orange);border-radius:6px;padding:8px 24px}
+.fiche div{display:flex;justify-content:space-between;gap:16px;padding:14px 0;border-bottom:1px solid var(--trait)}
+.fiche div:last-child{border-bottom:0}
+.fiche dt{color:var(--texte-doux);font-size:1rem}
+.fiche dd{margin:0;font-family:'Space Grotesk',sans-serif;font-weight:700;text-align:right;color:var(--texte)}
+@media (max-width:860px){.qui{grid-template-columns:1fr;gap:28px}}
+@media (max-width:420px){.fiche div{flex-direction:column;gap:2px}.fiche dd{text-align:left}}
+/* Prix nets et paiement, sous les tarifs */
+.infos-prix{list-style:none;margin:24px 0 0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.infos-prix li{background:var(--carte);border:1px solid var(--trait);border-left:4px solid var(--orange);border-radius:6px;padding:16px 18px}
+.infos-prix strong{display:block;font-family:'Space Grotesk',sans-serif}
+.infos-prix span{display:block;margin-top:4px;color:var(--texte-doux);font-size:1rem}
+@media (max-width:700px){.infos-prix{grid-template-columns:1fr}}
+/* Carte de la zone d'intervention */
+.carte-zone{margin:36px 0 0;background:var(--carte);border:1px solid var(--trait);border-radius:8px;overflow:hidden}
+.carte-zone svg{display:block;width:100%;height:auto}
+.c-terre{fill:#F7F4EE}
+.c-mer{fill:#CFE0EF}
+.c-etang{fill:#DCE9F4;stroke:#B9D0E5;stroke-width:1}
+.c-mer-nom{font-family:'Space Grotesk',sans-serif;font-size:16px;font-style:italic;fill:#5C84AA;letter-spacing:.06em}
+.c-route{fill:none;stroke:#D9CFC0;stroke-width:3;stroke-dasharray:2 6;stroke-linecap:round}
+.c-zone{fill:rgba(224,122,62,.10);stroke:#E07A3E;stroke-width:2;stroke-dasharray:6 5}
+.c-base{fill:#E07A3E;stroke:#FFFFFF;stroke-width:3}
+.c-grande{fill:#1E4B7A;stroke:#FFFFFF;stroke-width:2.5}
+.c-proche{fill:#E07A3E;stroke:#FFFFFF;stroke-width:1.5}
+.c-loin{fill:#FFFFFF;stroke:#1E4B7A;stroke-width:2.5}
+.c-nom{font-family:'Source Sans 3',sans-serif;font-size:14px;fill:#1A2533;paint-order:stroke;stroke:#F7F4EE;stroke-width:4px;stroke-linejoin:round}
+.c-nom-fort{font-family:'Space Grotesk',sans-serif;font-size:19px;font-weight:700;fill:#14263B}
+.c-petit{font-family:'Source Sans 3',sans-serif;font-size:13px;fill:#4B5A6B}
+.c-echelle{fill:none;stroke:#4B5A6B;stroke-width:2}
+.c-nord path{fill:#4B5A6B}.c-nord text{font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:700;fill:#4B5A6B}
+.carte-zone figcaption{display:flex;flex-wrap:wrap;gap:8px 22px;padding:14px 18px;border-top:1px solid var(--trait);font-size:.95rem;color:var(--texte-doux)}
+.carte-zone figcaption span{display:inline-flex;align-items:center;gap:8px}
+.carte-zone figcaption i{display:inline-block;width:12px;height:12px;border-radius:50%}
+.l-base{background:#E07A3E;box-shadow:0 0 0 2px #fff,0 0 0 3px #E07A3E}
+.l-proche{background:#E07A3E}
+.l-loin{background:#fff;border:2.5px solid #1E4B7A}
+.l-grande{background:#1E4B7A}
+/* Sur téléphone : on garde les grandes villes et la base, les villages restent dans la liste dessous */
+@media (max-width:600px){
+  .c-nom-petit{display:none}
+  .c-nom-fort{font-size:44px;stroke-width:8px}
+  .c-narbonne{transform:translateY(62px)}
+  .c-base{r:16px}.c-grande{r:13px}.c-proche{r:8px}.c-loin{r:9px;stroke-width:4}
+  .c-mer-nom{font-size:30px}.c-mer-nom+.c-mer-nom{transform:translateY(14px)}
+  .c-echelle{stroke-width:4}.c-petit{font-size:26px}.c-nord{display:none}
+}

@@ -26,7 +26,8 @@ Narbonne et alentours · Devis gratuit sous 48 h.
 | `index.html` | Page d’accueil (services, tarifs, cuisines, zone d’intervention, FAQ, contact) |
 | `mentions-legales.html` | Mentions légales |
 | `conditions-generales.html` | Conditions générales de vente |
-| `envoi-devis.php` | Envoie les demandes du formulaire vers contact@ateliercuisine11.fr (mail mis en forme) |
+| `envoi-devis.php` | Envoie les demandes du formulaire vers contact@ateliercuisine11.fr (mail mis en forme, avec jusqu’à 5 photos en pièces jointes) |
+| `pose-cuisine-montage-meubles-beziers.html`, `pose-cuisine-montage-meubles-carcassonne.html` | Pages pour Béziers et Carcassonne |
 | `signature-mail.html` + `signature-logo.png` | Signature e-mail avec logo (à copier dans l’app Mail de l’iPhone) |
 | `.htaccess` | Redirige tout vers https://ateliercuisine11.fr |
 | `sitemap.xml`, `robots.txt` | Pour Google |
