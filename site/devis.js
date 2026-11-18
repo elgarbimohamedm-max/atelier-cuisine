@@ -99,6 +99,7 @@
           afficher(d.message, 'ok'); f.reset();
           photos.forEach(function (p) { URL.revokeObjectURL(p.url); });
           photos = []; dessinerApercus();
+          if (window.acConversion) window.acConversion('formulaire');
           document.getElementById('debut').value = Math.floor(Date.now() / 1000);
         } else { afficher(d.message, 'erreur'); }
       })

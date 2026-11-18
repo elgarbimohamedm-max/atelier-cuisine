@@ -28,6 +28,7 @@ Narbonne et alentours · Devis gratuit sous 48 h.
 | `conditions-generales.html` | Conditions générales de vente |
 | `envoi-devis.php` | Envoie les demandes du formulaire vers contact@ateliercuisine11.fr (mail mis en forme, avec jusqu’à 5 photos en pièces jointes) |
 | `pose-cuisine-montage-meubles-beziers.html`, `pose-cuisine-montage-meubles-carcassonne.html` | Pages pour Béziers et Carcassonne |
+| `pub.js` | Bannière cookies et suivi Google Ads (voir plus bas) |
 | `signature-mail.html` + `signature-logo.png` | Signature e-mail avec logo (à copier dans l’app Mail de l’iPhone) |
 | `.htaccess` | Redirige tout vers https://ateliercuisine11.fr |
 | `sitemap.xml`, `robots.txt` | Pour Google |
@@ -48,6 +49,36 @@ Réglage unique : dans GitHub, **Settings → Secrets and variables → Actions 
 4. Vérifier le site en navigation privée.
 
 ⚠️ Ne jamais mettre de mot de passe dans ce dépôt.
+
+## Google Ads (suivi des demandes et bannière cookies)
+
+Le fichier `site/pub.js` gère la bannière cookies et le suivi Google Ads. **Tant que l’identifiant n’est pas rempli, il ne fait rien** : pas de bannière, aucun cookie.
+
+Ce qui est suivi, seulement si le visiteur clique sur « Accepter » :
+- une **demande de devis** envoyée avec le formulaire ;
+- un **clic sur le numéro de téléphone**.
+
+Pour l’activer, une fois le compte Google Ads créé :
+
+1. Dans Google Ads : **Objectifs → Conversions → Nouvelle action de conversion → Site Web**, entrer `ateliercuisine11.fr`.
+2. Créer 2 conversions **« manuellement avec du code »** :
+   - « Demande de devis » (catégorie *Envoi de formulaire pour prospects*) ;
+   - « Clic sur le téléphone » (catégorie *Contact*).
+3. Pour chacune, choisir **« Installer la balise vous-même »**. Google affiche un code qui contient `send_to: 'AW-123456789/AbCdEfGhIj'` :
+   - la partie avant le `/` est l’**identifiant** (`AW-…`, le même pour les deux) ;
+   - la partie après le `/` est le **libellé** (différent pour chaque conversion).
+4. Recopier ces valeurs en haut de `site/pub.js` :
+   ```js
+   var REGLAGES_PUB = {
+     id: 'AW-123456789',
+     libelleFormulaire: 'AbCdEfGhIj',
+     libelleAppel: 'KlMnOpQrSt'
+   };
+   ```
+   Puis passer `pub.js?v=1` à `pub.js?v=2` dans les pages HTML pour que les navigateurs prennent la nouvelle version.
+5. Publier sur `main`, ouvrir le site en navigation privée, cliquer sur « Accepter », puis vérifier dans Google Ads que la balise est « active » (cela peut prendre quelques heures).
+
+Le texte des cookies se trouve dans `mentions-legales.html` (partie « Cookies »).
 
 ## À faire
 

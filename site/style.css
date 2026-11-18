@@ -340,3 +340,7 @@ nav a[aria-current="page"]{color:var(--bleu);box-shadow:inset 0 -3px 0 var(--ora
   .c-mer-nom{font-size:30px}.c-mer-nom+.c-mer-nom{transform:translateY(14px)}
   .c-echelle{stroke-width:4}.c-petit{font-size:26px}.c-nord{display:none}
 }
+
+
+/* Phrase sous le formulaire de devis */
+.mention-form{font-size:.95rem;color:var(--texte-doux)}
