@@ -221,7 +221,7 @@
 <link rel="preload" href="fonts/source-sans-3.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="fonts/fonts.css?v=1">
 <script>document.documentElement.classList.add('js')</script>
-<link rel="stylesheet" href="style.css?v=4">
+<link rel="stylesheet" href="style.css?v=5">
 </head>
 <body>
 
@@ -428,7 +428,8 @@
     <div class="conteneur">
       <h2>Avis de nos clients</h2>
       <p class="intro">Note de 5 sur 5 sur Google.</p>
-      <div class="avis-grille">
+      <p class="avis-glisser" aria-hidden="true">Faites glisser pour voir les autres avis →</p>
+      <div class="avis-grille" tabindex="0" role="region" aria-label="Avis clients">
         <figure class="avis-carte">
           <p class="etoiles" role="img" aria-label="5 étoiles sur 5">★★★★★</p>
           <blockquote><p>Je recommande vivement cette entreprise pour la réalisation de votre cuisine ! Du début à la fin, tout s’est parfaitement déroulé. Ils se sont occupés de tout : de la conception avec les plans et le dessin de la cuisine jusqu’au montage complet. Le résultat est vraiment à la hauteur de mes attentes. Tout a été parfaitement installé. Je suis vraiment très satisfait du résultat et ravi d’avoir fait appel à eux. Un grand merci à toute l’équipe pour leur travail ! Je recommande les yeux fermés et n’hésiterai pas à refaire appel à eux.</p></blockquote>
