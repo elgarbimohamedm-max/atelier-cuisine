@@ -221,7 +221,7 @@
 <link rel="preload" href="fonts/source-sans-3.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="fonts/fonts.css?v=1">
 <script>document.documentElement.classList.add('js')</script>
-<link rel="stylesheet" href="style.css?v=5">
+<link rel="stylesheet" href="style.css?v=6">
 </head>
 <body>
 
@@ -494,6 +494,7 @@
         <div><label for="message">Message</label><textarea id="message" name="message" placeholder="Par exemple : cuisine en L de 4 m, ou montage d’une armoire PAX"></textarea></div>
         <button class="btn btn-orange" type="submit" id="envoyer">Envoyer ma demande de devis</button>
         <p class="message-form" id="retour" role="status"></p>
+        <p class="mention-form">Vos informations servent uniquement à vous recontacter pour votre devis. <a href="mentions-legales.html#donnees">En savoir plus</a></p>
       </form>
     </div>
   </section>
@@ -548,8 +549,9 @@
   </div>
 </footer>
 
-<script src="devis.js?v=2" defer></script>
+<script src="devis.js?v=3" defer></script>
 <script src="menu.js?v=1" defer></script>
+<script src="pub.js?v=1" defer></script>
 <aside aria-label="Appel rapide"><a class="appel-fixe" href="tel:+33666181915" aria-label="Appeler L’Atelier Cuisine au 06 66 18 19 15"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>Appeler · 06 66 18 19 15</a></aside>
 </body>
 </html>

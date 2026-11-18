@@ -21,6 +21,7 @@
       .then(function (d) {
         if (d.ok) {
           afficher(d.message, 'ok'); f.reset();
+          if (window.acConversion) window.acConversion('formulaire');
           document.getElementById('debut').value = Math.floor(Date.now() / 1000);
         } else { afficher(d.message, 'erreur'); }
       })
