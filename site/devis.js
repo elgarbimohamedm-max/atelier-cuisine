@@ -5,9 +5,14 @@
   function afficher(texte, type) { retour.textContent = texte; retour.className = 'message-form ' + (type || ''); }
   f.addEventListener('submit', function (e) {
     e.preventDefault();
-    if (!f.nom.value.trim() || !f.tel.value.trim()) {
+    var manquants = [f.nom, f.tel].filter(function (c) { return !c.value.trim(); });
+    [f.nom, f.tel].forEach(function (c) {
+      if (manquants.indexOf(c) > -1) { c.setAttribute('aria-invalid', 'true'); c.setAttribute('aria-describedby', 'retour'); }
+      else { c.removeAttribute('aria-invalid'); c.removeAttribute('aria-describedby'); }
+    });
+    if (manquants.length) {
       afficher('Indiquez votre nom et votre téléphone pour que nous puissions vous rappeler.', 'erreur');
-      (f.nom.value.trim() ? f.tel : f.nom).focus();
+      manquants[0].focus();
       return;
     }
     bouton.disabled = true; bouton.textContent = 'Envoi en cours…'; afficher('');
