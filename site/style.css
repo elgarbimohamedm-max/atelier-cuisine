@@ -344,3 +344,11 @@ nav a[aria-current="page"]{color:var(--bleu);box-shadow:inset 0 -3px 0 var(--ora
 
 /* Phrase sous le formulaire de devis */
 .mention-form{font-size:.95rem;color:var(--texte-doux)}
+/* Réserver un appel (Calendly) */
+.lien-rdv{margin-top:18px}
+.lien-rdv a{display:inline-flex;align-items:center;gap:8px;font-weight:600;color:#1E4B7A;text-decoration:none}
+.lien-rdv a:hover{text-decoration:underline}
+.rdv{margin-top:24px;padding:18px 20px;background:var(--carte);border:1px solid var(--trait);border-left:4px solid var(--orange);border-radius:6px}
+.rdv p{font-size:1rem;color:var(--texte-doux)}
+.rdv strong{color:var(--texte)}
+.rdv .btn{margin-top:14px}

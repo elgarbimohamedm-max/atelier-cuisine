@@ -123,9 +123,9 @@ var REGLAGES_PUB = {
     if (bloc) { bloc.hidden = false; bloc.querySelector('button').addEventListener('click', afficherBanniere); }
   }
 
-  // Clic sur un numéro de téléphone = conversion « appel »
+  // Clic sur un numéro de téléphone ou sur « Réserver un appel » (Calendly) = conversion « appel »
   document.addEventListener('click', function (e) {
-    var lien = e.target.closest && e.target.closest('a[href^="tel:"]');
+    var lien = e.target.closest && e.target.closest('a[href^="tel:"], a[href*="calendly.com"]');
     if (lien) window.acConversion('appel');
   });
 

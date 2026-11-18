@@ -60,7 +60,7 @@
 <link rel="preload" href="fonts/space-grotesk.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="fonts/source-sans-3.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="fonts/fonts.css?v=1">
-<link rel="stylesheet" href="style.css?v=7">
+<link rel="stylesheet" href="style.css?v=8">
 <script>document.documentElement.classList.add('js')</script>
 </head>
 <body>
@@ -107,6 +107,7 @@
           <a class="btn btn-orange" href="#contact">Demander un devis gratuit</a>
           <a class="btn btn-contour" href="tel:+33666181915">Appeler : 06 66 18 19 15</a>
         </div>
+        <p class="lien-rdv"><a href="https://calendly.com/contact-ateliercuisine11/30min" target="_blank" rel="noopener"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15" rx="2" stroke="currentColor" stroke-width="2"/><path d="M3.5 10h17M8 3v4M16 3v4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>Ou réservez un appel au créneau qui vous arrange →</a></p>
       </div>
       <aside class="bref" aria-label="En bref">
         <h2>En bref</h2>
@@ -266,6 +267,10 @@
           <li><span>E-mail</span><a href="mailto:contact@ateliercuisine11.fr">contact@ateliercuisine11.fr</a></li>
           <li><span>Zone d’intervention</span><strong>Narbonne et alentours</strong></li>
         </ul>
+        <div class="rdv">
+          <p><strong>Vous préférez qu’on vous appelle ?</strong> Choisissez un créneau dans notre agenda : nous vous appelons à l’heure prévue.</p>
+          <a class="btn btn-contour" href="https://calendly.com/contact-ateliercuisine11/30min" target="_blank" rel="noopener"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15" rx="2" stroke="currentColor" stroke-width="2"/><path d="M3.5 10h17M8 3v4M16 3v4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>Réserver un appel</a>
+        </div>
       </div>
       <form id="devis" action="envoi-devis.php" method="post" enctype="multipart/form-data" novalidate>
         <div class="piege" aria-hidden="true"><label for="site_web">Ne pas remplir</label><input id="site_web" name="site_web" tabindex="-1" autocomplete="off"></div>
@@ -341,6 +346,7 @@
         <li><a href="mailto:contact@ateliercuisine11.fr">contact@ateliercuisine11.fr</a></li>
         <li>Narbonne et alentours</li>
         <li>Tous les jours, de 8h à 20h</li>
+        <li><a href="https://calendly.com/contact-ateliercuisine11/30min" target="_blank" rel="noopener">Réserver un appel</a></li>
       </ul>
     </div>
     <div>
@@ -357,7 +363,7 @@
 
 <script src="devis.js?v=4" defer></script>
 <script src="menu.js?v=1" defer></script>
-<script src="pub.js?v=1" defer></script>
+<script src="pub.js?v=2" defer></script>
 <aside aria-label="Appel rapide"><a class="appel-fixe" href="tel:+33666181915" aria-label="Appeler L’Atelier Cuisine au 06 66 18 19 15"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>Appeler · 06 66 18 19 15</a></aside>
 </body>
 </html>

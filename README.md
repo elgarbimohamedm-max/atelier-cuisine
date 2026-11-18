@@ -75,7 +75,7 @@ Pour l’activer, une fois le compte Google Ads créé :
      libelleAppel: 'KlMnOpQrSt'
    };
    ```
-   Puis passer `pub.js?v=1` à `pub.js?v=2` dans les pages HTML pour que les navigateurs prennent la nouvelle version.
+   Puis passer `pub.js?v=2` à `pub.js?v=3` dans les pages HTML pour que les navigateurs prennent la nouvelle version.
 5. Publier sur `main`, ouvrir le site en navigation privée, cliquer sur « Accepter », puis vérifier dans Google Ads que la balise est « active » (cela peut prendre quelques heures).
 
 Le texte des cookies se trouve dans `mentions-legales.html` (partie « Cookies »).
