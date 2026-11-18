@@ -257,3 +257,8 @@ nav a[aria-current="page"]{color:var(--bleu);box-shadow:inset 0 -3px 0 var(--ora
 .plans-3d img{display:block;width:100%;height:auto;border-radius:6px;border:1px solid #3A5069}
 .plans-3d figcaption{margin-top:10px;color:#B9C7D6;font-size:.95rem}
 @media (max-width:600px){.plans-3d{grid-template-columns:1fr}}
+/* Styles de cuisines (photos d'illustration) */
+.titre-styles{margin-top:56px;font-size:1.25rem}
+#realisations .galerie-styles{grid-template-columns:repeat(4,minmax(0,1fr));margin-top:20px}
+#realisations .galerie-styles figure{aspect-ratio:1/1}
+@media (max-width:860px){#realisations .galerie-styles{grid-template-columns:repeat(2,minmax(0,1fr))}}
