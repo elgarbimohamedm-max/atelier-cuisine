@@ -352,3 +352,5 @@ nav a[aria-current="page"]{color:var(--bleu);box-shadow:inset 0 -3px 0 var(--ora
 .rdv p{font-size:1rem;color:var(--texte-doux)}
 .rdv strong{color:var(--texte)}
 .rdv .btn{margin-top:14px}
+/* Galerie de 3 photos (pages cuisine) : sur téléphone, la 1re photo en grand, les 2 autres dessous */
+@media (max-width:600px){#realisations .galerie-3 figure:first-child{grid-column:span 2;aspect-ratio:4/3}}
