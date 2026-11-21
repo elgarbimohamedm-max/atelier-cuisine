@@ -55,6 +55,10 @@ if ($email !== '' && !filter_var($email, FILTER_VALIDATE_EMAIL)) {
 }
 if ($projet === '') { $projet = 'Demande de devis'; }
 
+// Professionnel ou particulier ? (page Pros, champ Entreprise rempli, ou projet « Pro – … »)
+$est_pro = (champ('type_client', 20) === 'pro') || $entreprise !== '' || strpos($projet, 'Pro –') === 0;
+$type_client = $est_pro ? 'PROFESSIONNEL' : 'PARTICULIER';
+
 // ---------- Photos jointes (facultatives) ----------
 // Jusqu'à 5 images, 8 Mo maximum chacune ; le type réel du fichier est vérifié (pas seulement son nom).
 $photos = array();
@@ -102,10 +106,11 @@ if (strpos($tel_wa, '0') === 0 && strlen($tel_wa) === 10) { $tel_wa = '33' . sub
 $sujet_reponse = rawurlencode('Votre demande de devis – L’Atelier Cuisine');
 $date = date('d/m/Y à H:i');
 
-$sujet = 'Nouvelle demande : ' . $projet . ' – ' . ($entreprise !== '' ? $entreprise . ' / ' : '') . $nom . ($ville !== '' ? ' (' . $ville . ')' : '');
+$sujet = ($est_pro ? '[PRO] ' : '[PARTICULIER] ') . 'Nouvelle demande : ' . $projet . ' – ' . ($entreprise !== '' ? $entreprise . ' / ' : '') . $nom . ($ville !== '' ? ' (' . $ville . ')' : '');
 
 // ---------- Version texte (secours) ----------
 $texte = "NOUVELLE DEMANDE DE DEVIS – ateliercuisine11.fr\n\n"
+       . "Type de client : $type_client\n"
        . "Projet : $projet\n"
        . ($entreprise !== '' ? "Entreprise : $entreprise\n" : '')
        . "Nom : $nom\n"
@@ -144,9 +149,10 @@ $html = '<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="
 . '<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#EEF3F8;padding:24px 12px"><tr><td align="center">'
 . '<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:560px;background:#FFFFFF;border-radius:12px;overflow:hidden">'
 // En-tête
-. '<tr><td style="background:#1E4B7A;padding:22px 26px">'
+. '<tr><td style="background:' . ($est_pro ? '#14263B' : '#1E4B7A') . ';padding:22px 26px">'
 . '<div style="color:#F2B48C;font-size:12px;letter-spacing:3px;text-transform:uppercase">L’Atelier Cuisine</div>'
 . '<div style="color:#FFFFFF;font-size:22px;font-weight:bold;margin-top:6px">Nouvelle demande de devis</div>'
+. '<div style="display:inline-block;margin-top:12px;background:' . ($est_pro ? '#E07A3E' : '#FFFFFF') . ';color:' . ($est_pro ? '#1A1008' : '#1E4B7A') . ';font-weight:bold;font-size:13px;letter-spacing:2px;padding:6px 14px;border-radius:20px">' . ($est_pro ? '🏢 PROFESSIONNEL' : '🏠 PARTICULIER') . '</div>'
 . '</td></tr>'
 . '<tr><td style="height:5px;background:#E07A3E;font-size:0;line-height:0">&nbsp;</td></tr>'
 // Projet
@@ -164,7 +170,7 @@ $html = '<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="
 . (count($photos) ? '<tr><td style="padding:14px 26px 0"><div style="background:#FCEBDF;color:#B4561F;font-weight:bold;font-size:14px;padding:10px 14px;border-radius:8px">📷 ' . count($photos) . ' photo' . (count($photos) > 1 ? 's' : '') . ' en pièce jointe</div></td></tr>' : '')
 // Boutons
 . '<tr><td style="padding:20px 22px 8px"><table role="presentation" cellpadding="0" cellspacing="0"><tr>' . $boutons . '</tr></table></td></tr>'
-. '<tr><td style="padding:6px 26px 22px;color:#5B6B7C;font-size:13px">⏱ À rappeler sous 48 h, comme promis sur le site.</td></tr>'
+. '<tr><td style="padding:6px 26px 22px;color:#5B6B7C;font-size:13px">⏱ ' . ($rappel !== '' ? 'Devis à envoyer sous 48 h, ' . h(mb_strtolower(mb_substr($rappel, 0, 1, 'UTF-8'), 'UTF-8') . mb_substr($rappel, 1, null, 'UTF-8')) . ' (choix du client).' : 'À rappeler sous 48 h, comme promis sur le site.') . '</td></tr>'
 // Pied
 . '<tr><td style="background:#F4F8FC;padding:14px 26px;color:#8A97A6;font-size:12px">Reçue le ' . h($date) . ' depuis le formulaire de ateliercuisine11.fr</td></tr>'
 . '</table></td></tr></table></body></html>';
