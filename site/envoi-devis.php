@@ -212,7 +212,35 @@ if (count($photos)) {
 
 $sujet_encode = '=?UTF-8?B?' . base64_encode($sujet) . '?=';
 
+// ---------- Alerte sur le téléphone (application ntfy) ----------
+// Le nom secret du canal est dans notif-config.php, créé par la GitHub Action à partir du secret NTFY_TOPIC
+// (jamais dans ce dépôt public). Sans ce fichier, rien n'est envoyé. L'alerte ne contient aucune coordonnée.
+function alerte_telephone($est_pro, $projet, $entreprise, $ville, $rappel) {
+    $config = __DIR__ . '/notif-config.php';
+    if (!is_file($config)) { return; }
+    $canal = include $config;
+    if (!is_string($canal) || !preg_match('/^[A-Za-z0-9_-]{16,64}$/', $canal)) { return; }
+    $lignes = array($projet);
+    $lieu = trim(($est_pro && $entreprise !== '' ? $entreprise : '') . ($ville !== '' ? ($est_pro && $entreprise !== '' ? ' · ' : '') . $ville : ''));
+    if ($lieu !== '') { $lignes[] = $lieu; }
+    if ($rappel !== '') { $lignes[] = 'Devis souhaité : ' . $rappel; }
+    $lignes[] = 'Coordonnées dans votre boîte mail.';
+    $titre = $est_pro ? 'Nouveau devis PRO' : 'Nouveau devis particulier';
+    $contexte = stream_context_create(array('http' => array(
+        'method'  => 'POST',
+        'timeout' => 4,
+        'ignore_errors' => true,
+        'header'  => "Content-Type: text/plain; charset=utf-8\r\n"
+                   . 'Title: =?UTF-8?B?' . base64_encode($titre) . "?=\r\n"
+                   . "Priority: urgent\r\n"
+                   . 'Tags: ' . ($est_pro ? 'office' : 'house') . "\r\n",
+        'content' => implode("\n", $lignes),
+    )));
+    @file_get_contents('https://ntfy.sh/' . $canal, false, $contexte);
+}
+
 if (mail($destinataire, $sujet_encode, $corps, $entetes, '-f' . $expediteur)) {
+    alerte_telephone($est_pro, $projet, $entreprise, $ville, $rappel);
     repondre(true, 'Merci ! Votre demande a bien été envoyée. Nous vous recontactons sous 48 h.');
 } else {
     repondre(false, 'L’envoi n’a pas fonctionné. Appelez-nous au 06 66 18 19 15.', 500);

@@ -90,3 +90,15 @@ Le texte des cookies se trouve dans `mentions-legales.html` (partie « Cookies �
 - [ ] Ajouter un moyen de paiement chez OVH avant octobre 2027
 - [ ] Remplacer les images d’illustration par de vraies photos de chantiers
 - [ ] Récolter les premiers avis Google
+
+## Alerte de devis sur le téléphone (app ntfy)
+
+À chaque demande de devis, en plus du mail, `envoi-devis.php` envoie une notification urgente sur le téléphone via l'app gratuite **ntfy**. L'alerte indique seulement PRO ou particulier, le projet, la ville (et l'entreprise pour un pro) : **aucun nom, téléphone ni e-mail**.
+
+Le nom du canal est secret (le dépôt est public) : il est rangé dans le secret GitHub `NTFY_TOPIC`, et la GitHub Action crée `site/notif-config.php` sur le serveur au moment du déploiement. Sans ce secret, aucune alerte n'est envoyée.
+
+1. iPhone : installer **ntfy** (App Store), autoriser les notifications, **+** → « S'abonner au sujet » → coller le nom du canal (serveur ntfy.sh par défaut).
+2. GitHub : **Settings → Secrets and variables → Actions → New repository secret**, nom `NTFY_TOPIC`, valeur = le même nom de canal.
+3. Relancer le déploiement : **Actions → Déploiement OVH → Run workflow**.
+
+Pour changer de canal (si le nom a fuité) : choisir un nouveau nom, mettre à jour le secret et l'abonnement dans l'app, relancer le déploiement.

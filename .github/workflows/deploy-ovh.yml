@@ -4,6 +4,7 @@
 #
 # Secret à créer dans GitHub : Settings > Secrets and variables > Actions > New repository secret
 #   FTP_PASSWORD : le mot de passe FTP OVH du compte atelivpx
+#   NTFY_TOPIC   : (facultatif) nom secret du canal ntfy pour les alertes de devis sur le téléphone
 name: Déploiement OVH
 
 on:
@@ -28,6 +29,19 @@ jobs:
     steps:
       - name: Récupérer le code
         uses: actions/checkout@v4
+
+      # Alertes de devis sur le téléphone (app ntfy) : le nom secret du canal vient du secret
+      # NTFY_TOPIC et n'est jamais écrit dans ce dépôt public. Sans le secret, pas d'alerte.
+      - name: Préparer les alertes téléphone (secret NTFY_TOPIC)
+        env:
+          NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
+        run: |
+          if printf '%s' "$NTFY_TOPIC" | grep -Eq '^[A-Za-z0-9_-]{16,64}$'; then
+            printf "<?php return '%s';\n" "$NTFY_TOPIC" > site/notif-config.php
+            echo "Alertes téléphone activées"
+          else
+            echo "::notice::Secret NTFY_TOPIC absent ou invalide : alertes téléphone désactivées"
+          fi
 
       - name: Envoyer site/ vers OVH (www/)
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
