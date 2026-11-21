@@ -28,6 +28,7 @@ Narbonne et alentours · Devis gratuit sous 48 h.
 | `conditions-generales.html` | Conditions générales de vente |
 | `envoi-devis.php` | Envoie les demandes du formulaire vers contact@ateliercuisine11.fr (mail mis en forme, avec jusqu’à 5 photos en pièces jointes) |
 | `pose-cuisine-ikea-narbonne.html` | Page « Pose de cuisine IKEA » (montage METOD, plan de travail, conseils, FAQ) |
+| `professionnels-narbonne.html` | Page « Professionnels » (restaurants, locations saisonnières, agences, bureaux, commerces, hôtels et campings), avec champ Entreprise dans le formulaire |
 | `duree-pose-cuisine-ikea.html` | Guide « Combien de temps pour poser une cuisine IKEA ? » |
 | `pose-cuisine-montage-meubles-beziers.html`, `…-carcassonne.html`, `…-lezignan-corbieres.html`, `…-sigean.html`, `…-leucate.html` | Pages pour Béziers, Carcassonne, Lézignan-Corbières, Sigean et Leucate |
 | `pub.js` | Bannière cookies et suivi Google Ads (voir plus bas) |

@@ -39,6 +39,7 @@ $nom     = ligne(champ('nom', 100));
 $tel     = ligne(champ('tel', 30));
 $email   = ligne(champ('email', 150));
 $ville   = ligne(champ('ville', 100));
+$entreprise = ligne(champ('entreprise', 150)); // facultatif, page Professionnels
 $projet  = ligne(champ('projet', 100));
 $message = champ('message', 3000);
 
@@ -100,11 +101,12 @@ if (strpos($tel_wa, '0') === 0 && strlen($tel_wa) === 10) { $tel_wa = '33' . sub
 $sujet_reponse = rawurlencode('Votre demande de devis – L’Atelier Cuisine');
 $date = date('d/m/Y à H:i');
 
-$sujet = 'Nouvelle demande : ' . $projet . ' – ' . $nom . ($ville !== '' ? ' (' . $ville . ')' : '');
+$sujet = 'Nouvelle demande : ' . $projet . ' – ' . ($entreprise !== '' ? $entreprise . ' / ' : '') . $nom . ($ville !== '' ? ' (' . $ville . ')' : '');
 
 // ---------- Version texte (secours) ----------
 $texte = "NOUVELLE DEMANDE DE DEVIS – ateliercuisine11.fr\n\n"
        . "Projet : $projet\n"
+       . ($entreprise !== '' ? "Entreprise : $entreprise\n" : '')
        . "Nom : $nom\n"
        . "Téléphone : $tel\n"
        . "E-mail : " . ($email !== '' ? $email : '(non renseigné)') . "\n"
@@ -122,7 +124,8 @@ function bouton($lien, $texte, $fond) {
     return '<td style="padding:4px"><a href="' . $lien . '" style="display:inline-block;background:' . $fond . ';color:#FFFFFF;text-decoration:none;font-weight:bold;font-size:15px;padding:12px 16px;border-radius:8px;white-space:nowrap">' . $texte . '</a></td>';
 }
 
-$lignes  = rangee('Nom', h($nom));
+$lignes  = $entreprise !== '' ? rangee('Entreprise', h($entreprise)) : '';
+$lignes .= rangee('Nom', h($nom));
 $lignes .= rangee('Téléphone', '<a href="tel:' . h($tel_chiffres) . '" style="color:#1E4B7A;text-decoration:none">' . h($tel) . '</a>');
 $lignes .= rangee('E-mail', $email !== '' ? '<a href="mailto:' . h($email) . '" style="color:#1E4B7A;text-decoration:none">' . h($email) . '</a>' : '<span style="color:#8A97A6;font-weight:normal">non renseigné</span>');
 $lignes .= rangee('Ville', $ville !== '' ? h($ville) : '<span style="color:#8A97A6;font-weight:normal">non renseignée</span>');
