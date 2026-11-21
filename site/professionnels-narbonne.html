@@ -65,6 +65,14 @@
   "mainEntity": [
    {
     "@type": "Question",
+    "name": "Dois-je vous appeler pour avoir un devis ?",
+    "acceptedAnswer": {
+     "@type": "Answer",
+     "text": "Non. Le formulaire suffit : décrivez votre besoin, ajoutez une photo ou votre liste de mobilier, et vous recevez votre prix sous 48 h. S’il manque une précision, nous vous la demandons en une fois, de la façon que vous avez choisie : e-mail, SMS ou téléphone."
+    }
+   },
+   {
+    "@type": "Question",
     "name": "Intervenez-vous le soir ou le week-end ?",
     "acceptedAnswer": {
      "@type": "Answer",
@@ -119,9 +127,38 @@
 <link rel="preload" href="fonts/source-sans-3.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="fonts/fonts.css?v=1">
 <link rel="stylesheet" href="style.css?v=10">
+<style>
+/* Page Professionnels uniquement */
+.page-pro .heros{background:radial-gradient(900px 420px at 90% -10%,rgba(224,122,62,.22),transparent 60%),linear-gradient(180deg,#14263B 0%,#0F1D2E 100%);border-bottom:0}
+.page-pro .heros h1{color:#FFFFFF}
+.page-pro .heros p.sous{color:#C3D0DD}
+.page-pro .fil,.page-pro .fil a{color:#9FB2C6}
+.badge-pro{display:inline-block;background:rgba(240,145,90,.14);color:#F4A272;border:1px solid rgba(240,145,90,.45);border-radius:999px;padding:5px 14px;font-weight:700;font-size:.85rem;letter-spacing:.06em;text-transform:uppercase;margin-bottom:18px}
+.page-pro .heros .btn-contour{border-color:#FFFFFF;color:#FFFFFF}
+.page-pro .heros .btn-contour:hover{background:rgba(255,255,255,.08)}
+.secteurs{margin-top:26px;color:#8FA3B8;font-size:1rem}
+.page-pro .bref ol{list-style:none;margin:0;padding:0;counter-reset:etape-pro}
+.page-pro .bref ol li{display:flex;gap:14px;align-items:flex-start;padding:14px 0;border-top:1px solid #E3EAF2;counter-increment:etape-pro}
+.page-pro .bref ol li::before{content:counter(etape-pro);flex:none;width:38px;height:38px;margin:0;border:0;transform:none;border-radius:50%;background:#E07A3E;color:#1A1008;display:flex;align-items:center;justify-content:center;font-family:'Space Grotesk',sans-serif;font-weight:700}
+.page-pro .bref ol strong{display:block;color:#14263B;font-family:'Space Grotesk',sans-serif}
+.page-pro .bref ol span{display:block;color:#4B5A6B;font-size:1rem;margin-top:2px}
+.chiffres-pro{background:var(--carte);border-bottom:1px solid var(--trait);padding:0}
+.chiffres-pro ul{list-style:none;margin:0;padding:30px 0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px}
+.chiffres-pro strong{display:block;font-family:'Space Grotesk',sans-serif;font-size:2.2rem;line-height:1.1;color:var(--orange-texte)}
+.chiffres-pro span{display:block;color:var(--texte-doux);font-size:1rem;margin-top:4px}
+.cartes-pro{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;margin-top:40px}
+.cartes-pro.deux{grid-template-columns:repeat(2,minmax(0,1fr))}
+.carte-pro{background:var(--carte);border:1px solid var(--trait);border-radius:12px;padding:26px;box-shadow:0 16px 32px -24px rgba(20,38,59,.4)}
+.carte-pro .ico{width:50px;height:50px;border-radius:12px;background:var(--fond-plan);color:var(--bleu);display:flex;align-items:center;justify-content:center;margin-bottom:16px}
+.cartes-pro.deux .ico{background:rgba(224,122,62,.13);color:var(--orange-texte)}
+.carte-pro h3{font-size:1.2rem}
+.carte-pro p{margin-top:8px;color:var(--texte-doux);font-size:1.02rem}
+@media (max-width:900px){.cartes-pro{grid-template-columns:repeat(2,minmax(0,1fr))}.chiffres-pro ul{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:600px){.cartes-pro,.cartes-pro.deux{grid-template-columns:1fr}.chiffres-pro ul{padding:22px 0;gap:18px}.chiffres-pro strong{font-size:1.8rem}}
+</style>
 <script>document.documentElement.classList.add('js')</script>
 </head>
-<body>
+<body class="page-pro">
 
 <header>
   <div class="barre">
@@ -160,96 +197,103 @@
     <div class="conteneur heros-grille">
       <div>
         <p class="fil"><a href="./">Accueil</a><span aria-hidden="true">›</span>Professionnels</p>
-        <h1>Montage et installation pour les professionnels</h1>
-        <p class="sous">Restaurants, locations saisonnières, agences, bureaux, commerces, hôtels et campings : nous montons votre mobilier, nous équipons vos logements et nous installons tout, à Narbonne et dans le Narbonnais.</p>
+        <p class="badge-pro">Espace professionnels</p>
+        <h1>Votre devis pro en 2&nbsp;minutes. Sans <span style="white-space:nowrap">casse-tête</span>.</h1>
+        <p class="sous">Quelques informations, une photo ou votre liste de mobilier : vous recevez votre prix sous 48 h. Pas d’appels à rallonge, pas de rendez-vous inutiles.</p>
         <div class="actions">
-          <a class="btn btn-orange" href="#contact">Demander un devis gratuit</a>
+          <a class="btn btn-orange" href="#contact">Obtenir mon devis →</a>
           <a class="btn btn-contour" href="tel:+33666181915">Appeler : 06 66 18 19 15</a>
         </div>
-        <p class="lien-rdv"><a href="https://calendly.com/contact-ateliercuisine11/30min" target="_blank" rel="noopener"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15" rx="2" stroke="currentColor" stroke-width="2"/><path d="M3.5 10h17M8 3v4M16 3v4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>Ou réservez un appel au créneau qui vous arrange →</a></p>
+        <p class="secteurs">Restaurants · Locations saisonnières · Agences · Bureaux · Commerces · Hôtels et campings</p>
       </div>
-      <aside class="bref" aria-label="En bref">
-        <h2>Pour les pros, en bref</h2>
-        <ul>
-          <li>Intervention hors heures d’ouverture</li>
-          <li>Prix adapté au volume</li>
-          <li>Facture au nom de votre entreprise</li>
-          <li>Un seul interlocuteur</li>
-          <li>Retrait et livraison du mobilier</li>
-        </ul>
-        <p class="bref-prix">Devis gratuit sous 48 h</p>
+      <aside class="bref" aria-label="Comment ça marche">
+        <h2>Comment ça marche</h2>
+        <ol>
+          <li><div><strong>Vous remplissez le formulaire</strong><span>2 minutes, depuis votre téléphone ou votre ordinateur.</span></div></li>
+          <li><div><strong>Vous recevez votre prix</strong><span>Un devis clair et détaillé, sous 48 h.</span></div></li>
+          <li><div><strong>Nous nous occupons de tout</strong><span>Montage, installation, cartons emportés.</span></div></li>
+        </ol>
+        <p class="bref-prix">Gratuit et sans engagement</p>
       </aside>
     </div>
   </section>
 
-  <section id="services">
+  <section class="chiffres-pro" aria-label="Nos engagements">
     <div class="conteneur">
-      <h2>Pour qui ?</h2>
-      <p class="intro">Que vous ayez un meuble à monter ou plusieurs logements à équiper, nous nous adaptons à votre activité.</p>
-      <div class="services-grille">
-        <article class="service">
-          <h3>Restaurants et bars</h3>
-          <p>Tables, chaises et mobilier de terrasse, étagères et rangements, fixation d’écrans et de luminaires : nous intervenons avant l’ouverture ou le jour de fermeture.</p>
-        </article>
-        <article class="service">
-          <h3>Locations saisonnières et conciergeries</h3>
-          <p>Un appartement ou plusieurs logements à meubler avant la saison : lits, rangements, cuisine, télévision, étagères et rideaux. Tout est prêt pour vos premiers voyageurs.</p>
-        </article>
-        <article class="service">
-          <h3>Agences immobilières et bailleurs</h3>
-          <p>Cuisine à poser ou à remplacer dans un logement à louer ou à vendre, meubles à monter, fixations à reprendre entre deux locataires.</p>
-        </article>
-        <article class="service">
-          <h3>Bureaux</h3>
-          <p>Bureaux, caissons, armoires et rangements, montés et mis de niveau. Écrans, tableaux et étagères fixés solidement au mur.</p>
-        </article>
-        <article class="service meubles">
-          <h3>Commerces</h3>
-          <p>Étagères, rangements, présentoirs et mobilier de boutique, fixation d’écrans et de miroirs : votre magasin prêt pour l’ouverture.</p>
-        </article>
-        <article class="service meubles">
-          <h3>Hôtels, gîtes et campings</h3>
-          <p>Mobilier en série pour vos chambres, gîtes ou mobil-homes : lits, tables de chevet, rangements, télévisions. Nous montons tout, logement après logement.</p>
-        </article>
-      </div>
+      <ul>
+        <li><strong>2 min</strong><span>pour demander votre devis</span></li>
+        <li><strong>48 h</strong><span>pour recevoir votre prix</span></li>
+        <li><strong>7 j/7</strong><span>de 8 h à 20 h, hors heures d’ouverture</span></li>
+        <li><strong>1 seul</strong><span>interlocuteur, du devis à la fin</span></li>
+      </ul>
     </div>
   </section>
 
-  <section class="tarifs-section">
+  <section id="simple">
     <div class="conteneur">
-      <h2>Ce que nous vous garantissons</h2>
-      <p class="intro">Des conditions pensées pour les entreprises.</p>
-      <div class="services-grille">
-        <article class="service">
-          <h3>Hors heures d’ouverture</h3>
+      <h2>Simple pour vous, vraiment</h2>
+      <p class="intro">Vous avez une entreprise à faire tourner. Demander un devis ne doit pas vous prendre la journée.</p>
+      <div class="cartes-pro deux">
+        <article class="carte-pro">
+          <span class="ico" aria-hidden="true"><svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M9 3v3M3 9h3M5 5l2 2M11 11l9 3-4 2-2 4z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          <h3>Pas d’appels à rallonge</h3>
+          <p>Tout se fait avec le formulaire. S’il manque une précision, nous vous la demandons en une fois, par e-mail, SMS ou téléphone, comme vous préférez.</p>
+        </article>
+        <article class="carte-pro">
+          <span class="ico" aria-hidden="true"><svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M6 3h8l4 4v14H6z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M9 12h6M9 16h4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
+          <h3>Un prix clair, par écrit</h3>
+          <p>Un devis détaillé, gratuit et sans engagement, adapté au volume. TVA non applicable : le prix du devis est le prix que vous payez.</p>
+        </article>
+        <article class="carte-pro">
+          <span class="ico" aria-hidden="true"><svg width="26" height="26" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"/><path d="M12 7v5l3 2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
+          <h3>Quand ça vous arrange</h3>
           <p>Tôt le matin, le soir ou le week-end : nous intervenons quand cela gêne le moins votre activité et vos clients.</p>
         </article>
-        <article class="service">
-          <h3>Prix adapté au volume</h3>
-          <p>Beaucoup de meubles ou plusieurs logements ? Le tarif est adapté au volume et figure clairement dans votre devis.</p>
-        </article>
-        <article class="service meubles">
+        <article class="carte-pro">
+          <span class="ico" aria-hidden="true"><svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M6 3h12v18l-3-2-3 2-3-2-3 2z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M9 8h6M9 12h6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
           <h3>Facture professionnelle</h3>
-          <p>Facture au nom de votre entreprise, avec notre numéro SIRET. TVA non applicable (article 293 B du CGI) : le prix du devis est le prix que vous payez.</p>
-        </article>
-        <article class="service meubles">
-          <h3>Un seul interlocuteur</h3>
-          <p>La même personne du devis jusqu’à la fin du chantier. Un souci après notre passage ? Appelez-nous, nous revenons le régler.</p>
+          <p>Au nom de votre entreprise, avec notre numéro SIRET. Un souci après notre passage ? Nous revenons le régler.</p>
         </article>
       </div>
     </div>
   </section>
 
-  <section class="etapes-section">
+  <section class="tarifs-section" id="services">
     <div class="conteneur">
-      <h2>Comment ça se passe</h2>
-      <p class="intro">Simple et rapide, même pour un gros volume.</p>
-      <ol class="etapes">
-        <li><h3>Vous nous contactez</h3><p>Avec la liste du mobilier, le nombre de logements ou quelques photos.</p></li>
-        <li><h3>Devis sous 48 h</h3><p>Un devis détaillé et gratuit, après une visite si besoin.</p></li>
-        <li><h3>Le planning</h3><p>Nous fixons ensemble les dates et les horaires, selon votre activité.</p></li>
-        <li><h3>L’intervention</h3><p>Nous montons et installons tout, puis nous emportons les cartons et laissons les lieux propres.</p></li>
-      </ol>
+      <h2>Pour qui ?</h2>
+      <p class="intro">Un meuble à monter ou plusieurs logements à équiper : nous nous adaptons à votre activité.</p>
+      <div class="cartes-pro">
+        <article class="carte-pro">
+          <span class="ico" aria-hidden="true"><svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M7 3v8M5 3v5a2 2 0 0 0 4 0V3M7 11v10M17 3c-2 1-3 4-3 7h3v11" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          <h3>Restaurants et bars</h3>
+          <p>Tables, chaises, mobilier de terrasse, étagères, rangements, écrans et luminaires, avant l’ouverture ou le jour de fermeture.</p>
+        </article>
+        <article class="carte-pro">
+          <span class="ico" aria-hidden="true"><svg width="26" height="26" viewBox="0 0 24 24" fill="none"><rect x="3" y="7" width="18" height="13" rx="2" stroke="currentColor" stroke-width="2"/><path d="M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2M3 12h18" stroke="currentColor" stroke-width="2"/></svg></span>
+          <h3>Locations saisonnières</h3>
+          <p>Un ou plusieurs logements à meubler avant la saison : lits, rangements, cuisine, télévision, étagères et rideaux.</p>
+        </article>
+        <article class="carte-pro">
+          <span class="ico" aria-hidden="true"><svg width="26" height="26" viewBox="0 0 24 24" fill="none"><circle cx="8" cy="15" r="4" stroke="currentColor" stroke-width="2"/><path d="M11 12l8-8M16 7l2 2M14 9l2 2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
+          <h3>Agences et bailleurs</h3>
+          <p>Cuisine à poser ou à remplacer, meubles à monter, fixations à reprendre entre deux locataires.</p>
+        </article>
+        <article class="carte-pro">
+          <span class="ico" aria-hidden="true"><svg width="26" height="26" viewBox="0 0 24 24" fill="none"><rect x="3" y="4" width="18" height="12" rx="2" stroke="currentColor" stroke-width="2"/><path d="M8 20h8M12 16v4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
+          <h3>Bureaux</h3>
+          <p>Bureaux, caissons, armoires et rangements montés de niveau, écrans et tableaux fixés au mur.</p>
+        </article>
+        <article class="carte-pro">
+          <span class="ico" aria-hidden="true"><svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M4 9l1-5h14l1 5M4 9h16v11H4zM4 9a2.7 2.7 0 0 0 5.3 0 2.7 2.7 0 0 0 5.4 0 2.7 2.7 0 0 0 5.3 0M10 20v-5h4v5" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></span>
+          <h3>Commerces</h3>
+          <p>Étagères, présentoirs, rangements et mobilier de boutique, écrans et miroirs : prêt pour l’ouverture.</p>
+        </article>
+        <article class="carte-pro">
+          <span class="ico" aria-hidden="true"><svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M3 18V6M3 13h18v5M21 13a3 3 0 0 0-3-3h-7v3M7 11.5a1.5 1.5 0 1 0 0-.01" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          <h3>Hôtels, gîtes et campings</h3>
+          <p>Mobilier en série pour chambres, gîtes ou mobil-homes : lits, chevets, rangements, télévisions.</p>
+        </article>
+      </div>
     </div>
   </section>
 
@@ -257,6 +301,7 @@
     <div class="conteneur">
       <h2>Questions fréquentes des professionnels</h2>
       <div class="faq">
+        <details><summary>Dois-je vous appeler pour avoir un devis ?</summary><p>Non. Le formulaire suffit : décrivez votre besoin, ajoutez une photo ou votre liste de mobilier, et vous recevez votre prix sous 48 h. S’il manque une précision, nous vous la demandons en une fois, de la façon que vous avez choisie : e-mail, SMS ou téléphone.</p></details>
         <details><summary>Intervenez-vous le soir ou le week-end ?</summary><p>Oui. Pour ne pas gêner votre activité, nous pouvons intervenir tôt le matin, le soir ou le week-end. Le créneau est fixé avec vous au moment du devis.</p></details>
         <details><summary>Faites-vous un prix pour plusieurs logements ou beaucoup de meubles ?</summary><p>Oui. Quand il y a beaucoup de meubles ou plusieurs logements à équiper, le tarif est adapté au volume. Envoyez-nous la liste du mobilier ou le nombre de logements : nous vous répondons avec un devis détaillé sous 48 h.</p></details>
         <details><summary>Recevrai-je une facture au nom de mon entreprise ?</summary><p>Oui. La facture est établie au nom de votre entreprise, avec notre numéro SIRET. TVA non applicable (article 293 B du CGI) : le prix du devis est le prix que vous payez.</p></details>
@@ -270,8 +315,8 @@
   <section class="tarifs-section" id="contact">
     <div class="conteneur contact">
       <div>
-        <h2>Parlons de votre projet</h2>
-        <p class="intro">Appelez-nous ou remplissez le formulaire. Nous vous répondons rapidement avec un devis gratuit.</p>
+        <h2>Votre devis en 2 minutes</h2>
+        <p class="intro">Remplissez ce formulaire : vous recevez votre prix sous 48 h. Seuls le nom et le téléphone sont obligatoires.</p>
         <ul class="coord">
           <li><span>Téléphone</span><a href="tel:+33666181915">06 66 18 19 15</a></li>
           <li><span>E-mail</span><a href="mailto:contact@ateliercuisine11.fr">contact@ateliercuisine11.fr</a></li>
@@ -306,7 +351,15 @@
             <option>Pro – Autre</option>
           </select>
         </div>
-        <div><label for="message">Message</label><textarea id="message" name="message" placeholder="Par exemple : 6 appartements à meubler à Gruissan avant juin : lits, rangements, télévisions à fixer"></textarea></div>
+        <div>
+          <label for="rappel">Comment préférez-vous recevoir votre devis ?</label>
+          <select id="rappel" name="rappel">
+            <option selected>Par e-mail</option>
+            <option>Par SMS ou WhatsApp</option>
+            <option>Par téléphone</option>
+          </select>
+        </div>
+        <div><label for="message">Votre besoin en quelques mots</label><textarea id="message" name="message" placeholder="Par exemple : 6 appartements à meubler à Gruissan avant juin : lits, rangements, télévisions à fixer"></textarea></div>
         <div class="champ-photos">
           <label for="photos">Photos (facultatif)</label>
           <p class="aide" id="photos-aide">Ajoutez jusqu’à 5 photos des lieux, de votre liste de mobilier ou de vos bons de commande : nous vous donnerons un prix plus précis.</p>
@@ -315,7 +368,7 @@
           <ul class="apercus" id="apercus" aria-label="Photos ajoutées"></ul>
           <p class="aide" id="photos-compteur" aria-live="polite"></p>
         </div>
-        <button class="btn btn-orange" type="submit" id="envoyer">Envoyer ma demande de devis</button>
+        <button class="btn btn-orange" type="submit" id="envoyer">Recevoir mon devis</button>
         <p class="message-form" id="retour" role="status"></p>
         <p class="mention-form">Vos informations servent uniquement à vous recontacter pour votre devis. <a href="mentions-legales.html#donnees">En savoir plus</a></p>
       </form>

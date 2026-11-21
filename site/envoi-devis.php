@@ -40,6 +40,7 @@ $tel     = ligne(champ('tel', 30));
 $email   = ligne(champ('email', 150));
 $ville   = ligne(champ('ville', 100));
 $entreprise = ligne(champ('entreprise', 150)); // facultatif, page Professionnels
+$rappel  = ligne(champ('rappel', 50));       // facultatif : comment le client veut recevoir son devis
 $projet  = ligne(champ('projet', 100));
 $message = champ('message', 3000);
 
@@ -110,7 +111,8 @@ $texte = "NOUVELLE DEMANDE DE DEVIS – ateliercuisine11.fr\n\n"
        . "Nom : $nom\n"
        . "Téléphone : $tel\n"
        . "E-mail : " . ($email !== '' ? $email : '(non renseigné)') . "\n"
-       . "Ville : " . ($ville !== '' ? $ville : '(non renseignée)') . "\n\n"
+       . "Ville : " . ($ville !== '' ? $ville : '(non renseignée)') . "\n"
+       . ($rappel !== '' ? "Devis souhaité : $rappel\n" : '') . "\n"
        . "Message :\n" . ($message !== '' ? $message : '(pas de message)') . "\n\n"
        . (count($photos) ? count($photos) . " photo(s) en pièce jointe.\n\n" : '')
        . "Reçue le $date\n";
@@ -129,6 +131,7 @@ $lignes .= rangee('Nom', h($nom));
 $lignes .= rangee('Téléphone', '<a href="tel:' . h($tel_chiffres) . '" style="color:#1E4B7A;text-decoration:none">' . h($tel) . '</a>');
 $lignes .= rangee('E-mail', $email !== '' ? '<a href="mailto:' . h($email) . '" style="color:#1E4B7A;text-decoration:none">' . h($email) . '</a>' : '<span style="color:#8A97A6;font-weight:normal">non renseigné</span>');
 $lignes .= rangee('Ville', $ville !== '' ? h($ville) : '<span style="color:#8A97A6;font-weight:normal">non renseignée</span>');
+if ($rappel !== '') { $lignes .= rangee('Devis souhaité', h($rappel)); }
 
 $boutons = bouton('tel:' . h($tel_chiffres), '📞 Appeler', '#1E4B7A');
 if (strlen($tel_wa) >= 10) { $boutons .= bouton('https://wa.me/' . h($tel_wa), '💬 WhatsApp', '#1F8F4E'); }
