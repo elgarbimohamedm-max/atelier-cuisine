@@ -358,3 +358,8 @@ nav a[aria-current="page"]{color:var(--bleu);box-shadow:inset 0 -3px 0 var(--ora
 .reseaux{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
 .reseaux a{display:inline-flex;align-items:center;gap:8px;padding:8px 14px;border:1px solid var(--trait);border-radius:999px;text-decoration:none;font-weight:600;color:var(--bleu);background:var(--carte)}
 .reseaux a:hover{border-color:var(--bleu)}
+/* Tableaux de texte (guides) : la 2e colonne contient des phrases, pas des prix */
+.tableau-texte table{min-width:0}
+.tableau-texte td:first-child{font-family:'Space Grotesk',sans-serif;font-weight:700;width:34%}
+.tableau-texte td:last-child{white-space:normal;font-family:inherit;font-weight:400}
+@media (max-width:520px){.tableau-texte th,.tableau-texte td{padding:14px 14px}.tableau-texte td:first-child{width:40%}}
